@@ -1,6 +1,6 @@
 {
   "name": "socket.io-session",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unobtrusive Socket.io middleware to add support for Express 3 sessions.",
   "main": "index.js",
   "repository": {
