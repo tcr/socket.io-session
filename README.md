@@ -1,6 +1,6 @@
 # socket.io-session
 
-Unobtrusive Socket.io middleware to add Express session capability.
+Unobtrusive Socket.io middleware to add Express 3 session capability.
 
     npm install socket.io-session
 
