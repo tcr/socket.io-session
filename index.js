@@ -6,7 +6,7 @@ module.exports = function (cookieParser, sessionStore, cookie, auth) {
 
   return function (data, accept) {
     function _next (err) {
-      auth ? auth(data, accept) : accept(err, true);
+      _auth ? _auth(data, accept) : accept(err, true);
     }
 
     if (data && data.headers && data.headers.cookie) {
