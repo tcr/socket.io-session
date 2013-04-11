@@ -15,7 +15,7 @@ module.exports = function (cookieParser, sessionStore, cookie, auth) {
           _next('COOKIE_PARSE_ERROR');
         }
         var sessionId = data.signedCookies[_cookie];
-        _sessionStore.get(sessionId, function (err, session) {
+        _sessionStore.load(sessionId, function (err, session) {
           if (err || !session){
             _next('INVALID_SESSION');
           } else{
