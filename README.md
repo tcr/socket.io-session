@@ -6,7 +6,7 @@ Unobtrusive Socket.io middleware to add Express 3 session capability.
 
 This module uses `io.set('authorization')` to add a `session` property to `socket.handshake`.
 
-```
+```js
 var express = require('express')
   , MongoStore = require('connect-mongo')(express)
   , ioSession = require('socket.io-session');
@@ -30,7 +30,9 @@ io.on('connection', function (socket) {
 
 You can use your own authorization function as the last argument after the session is added:
 
-    ioSession(cookieParser, memoryStore, [session sid key], [authorization(data, accept)])
+```js
+ioSession(cookieParser, memoryStore, [session sid key], [authorization(data, accept)])
+```
 
 ## License 
 
