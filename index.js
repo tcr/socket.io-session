@@ -28,6 +28,4 @@ module.exports = function (cookieParser, sessionStore, cookie, auth) {
       _next('MISSING_COOKIE');
     }
   };
-
-  return authorization;
 };
