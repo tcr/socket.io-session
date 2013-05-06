@@ -1,3 +1,4 @@
+var Session = require('connect').middleware.session.Session;
 module.exports = function (cookieParser, sessionStore, cookie, auth) {
   var _sessionStore = sessionStore
     , _cookieParser = cookieParser
@@ -19,7 +20,7 @@ module.exports = function (cookieParser, sessionStore, cookie, auth) {
           if (err || !session){
             _next('INVALID_SESSION');
           } else{
-            data.session = session;
+            data.session = new Session(data, session);
             _next(null);
           }
         });
