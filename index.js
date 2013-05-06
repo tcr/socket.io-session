@@ -1,3 +1,4 @@
+var Session = require('connect').middleware.session.Session;
 module.exports = function (cookieParser, sessionStore, cookie, auth) {
   var _sessionStore = sessionStore
     , _cookieParser = cookieParser
@@ -14,12 +15,13 @@ module.exports = function (cookieParser, sessionStore, cookie, auth) {
         if (err) {
           _next('COOKIE_PARSE_ERROR');
         }
-        var sessionId = data.signedCookies[_cookie];
-        _sessionStore.load(sessionId, function (err, session) {
+        data.sessionId = data.signedCookies[_cookie];
+        data.sessionStore = sessionStore;
+        _sessionStore.load(data.sessionId, function (err, session) {
           if (err || !session){
             _next('INVALID_SESSION');
           } else{
-            data.session = session;
+            data.session = new Session(data, session);
             _next(null);
           }
         });
