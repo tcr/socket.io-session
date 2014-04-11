@@ -14,12 +14,12 @@ var express = require('express')
 var app = express();
 
 var sessionKey = 'secret key'
-var memoryStore = new MongoStore({ db: 'name', url: MONGO_URI + '/name' });
+var sessionStore = new MongoStore({ db: 'name', url: MONGO_URI + '/name' });
 app.use(express.cookieParser());
-app.use(express.session({ secret: sessionKey, store: memoryStore }));
+app.use(express.session({ secret: sessionKey, store: sessionStore }));
 
 var io = require('socket.io').listen(server);
-io.set('authorization', ioSession(express.cookieParser(sessionKey), memoryStore));
+io.set('authorization', ioSession(express.cookieParser(sessionKey), sessionStore));
 
 io.on('connection', function (socket) {
   console.log(socket.handshake.session);
@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
 You can use your own authorization function as the last argument after the session is added:
 
 ```js
-ioSession(cookieParser, memoryStore, [session sid key], [authorization(data, accept)])
+ioSession(cookieParser, sessionStore, [session sid key], [authorization(data, accept)])
 ```
 
 ## License 
